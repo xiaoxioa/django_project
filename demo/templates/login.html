@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+
+    <div class="jumbotron">
+        {% if form.errors %}
+        <p class="text-error">Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        <h1>Login</h1>
+        <br/>
+        <p class="lead">This is a guiding message.</p>
+        <form method="post" action="/demo/">
+            {% csrf_token %}
+        <table border="0" align="center">
+            <tr><th><label for="id_username">Username:</label></th><td>{{ form.username }}</td></tr>
+            <tr><th><label for="id_password">Password:</label></th><td>{{ form.password }}</td></tr>
+        </table>
+            <br/>
+        <input type="submit" value="Login" />
+        <input type="hidden" name="next" value="login" />
+        </form>
+        <p><a href="./register">Register</a></p>
+    </div>
+
+
+
+
+
+{% endblock %}

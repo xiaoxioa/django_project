@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+<!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h3 class="text-muted">xiaoxiao's Project</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <!--can i have a js to make class="active" when mouse through-->
+            <li class="active"><a href="/" >Home</a></li>
+            <li><a href="/upload">DataUpload</a></li>
+            <li><a href="/featureSelect">Feature Selection</a></li>
+            <li><a href="/regression">Regression</a></li>
+            <li><a href="/result">Result</a></li>
+          </ul>
+
+        </nav>
+      </div>
+{#  Actually this page is the same as home/templates/index.html   #}
+{#    But now I have no time to consider more!!!!!     #}
+
+          <!-- Jumbotron -->
+      <div class="jumbotron">
+          <h1>Welcome {{ user.username }} !</h1>
+          <p class="lead">This is a guiding message.</p>
+          {% if user.username %}
+{##}
+{#          <p><a href="demo/login/">Login</a>|#}
+{#              <a href="demo/register/">Register</a></p>#}
+{#          {% else %}#}
+            <p><a href="demo/logout/">Logout</a></p>
+          {% endif %}
+      </div>
+
+
+{% endblock %}
