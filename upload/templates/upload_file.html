@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}欢迎光临文件上传页面{% endblock %}
+
+{% block content %}
+<!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h3 class="text-muted">xiaoxiao's Project</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <!--can i have a js to make class="active" when mouse through-->
+            <li><a href="/" >Home</a></li>
+            <li class="active"><a href="/upload">DataUpload</a></li>
+            <li><a href="/featureSelect">Feature Selection</a></li>
+            <li><a href="/regression">Regression</a></li>
+            <li><a href="/result">Result</a></li>
+          </ul>
+
+        </nav>
+      </div>
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <div class="container">
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="" method="post" enctype="multipart/form-data" name="upload">
+            {% csrf_token %}
+            <h2>{{ form.datafile.label_tag }} {{ form.datafile.help_text }}</h2>
+            <p class="lead">{{ form.non_field_errors }}</p>
+            <p align="center">
+                {{ form.datafile.errors }}
+				{{ form.datafile }}
+            </p>
+            <input type="hidden" name="type" value="1">
+			<p><input class='btn btn-lg btn-success' type="submit" value="Upload" /></p>
+
+        </form>
+            <form action="" method="post" name="select">{% csrf_token %}
+            <table class="table ">
+                {% for e in filelist%}
+                    <!-- Upload form. Note enctype attribute! -->
+
+                    <tr>
+                        <th class="center">文件名</th>
+                        <th class="center">文件大小</th>
+                        <th class="center">上传时间</th>
+                        <th class="center">选择?</th>
+                    </tr>
+                    <tr>
+                        <td class="center">{{ e.sourcefile }}</td>
+                        <td class="center">{{ e.size }}</td>
+                        <td class="center">{{ e.date }}</td>
+                        <td class="center"><input type="radio" name="datefile_path" value={{ e.datafile }}></td>
+                    </tr>
+                {% endfor %}
+            </table>
+                <input type="hidden" name="type" value="2">
+                <p><input class='btn btn-lg btn-success' type="submit" value="选择" /></p>
+        </form>
+
+        </div>
+
+      </div>
+
+{% endblock %}
